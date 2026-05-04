@@ -1,0 +1,11 @@
+**REGION Log
+DateTime.GetCurrentDateTime.Local DateTimeFormat: DateTime.DateTimeFormat.DateAndTime CurrentDateTime=> CurrentDateTime
+Text.ConvertDateTimeToText.FromCustomDateTime DateTime: CurrentDateTime CustomFormat: $'''ddMMyyyy-HHmm''' Result=> CurrentDateTimeLog
+File.WriteText File: $'''E:\\BillingNote\\Log\\Log-CreateBillingNote-%CurrentDateTimeLog%.txt''' TextToWrite: $'''Start Flow ----- %CurrentDateTime%''' AppendNewLine: True IfFileExists: File.IfFileExists.Overwrite Encoding: File.FileEncoding.Unicode
+SET LogPath TO $'''E:\\BillingNote\\Log\\Log-CreateBillingNote-%CurrentDateTimeLog%.txt'''
+**ENDREGION
+DISABLE CALL DepWithoutCN
+DISABLE CALL DepWithCN
+CALL SonWithoutCN
+CALL SonWithCN
+Display.ShowMessageDialog.ShowMessage Title: $'''Test''' Message: 111 Icon: Display.Icon.None Buttons: Display.Buttons.OK DefaultButton: Display.DefaultButton.Button1 IsTopMost: False ButtonPressed=> ButtonPressed
