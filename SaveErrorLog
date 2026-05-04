@@ -1,0 +1,7 @@
+**REGION LogStep1
+DateTime.GetCurrentDateTime.Local DateTimeFormat: DateTime.DateTimeFormat.DateAndTime CurrentDateTime=> CurrentDateTime
+Text.ConvertDateTimeToText.FromCustomDateTime DateTime: CurrentDateTime CustomFormat: $'''ddMMyyyy-HHmm''' Result=> CurrentDateTimeLog
+ERROR => LastError
+File.WriteText File: LogPath TextToWrite: $'''Error Step %StepStatus% ------ %CurrentDateTime%
+- Log Error - %LastError%''' AppendNewLine: True IfFileExists: File.IfFileExists.Append Encoding: File.FileEncoding.Unicode
+**ENDREGION
